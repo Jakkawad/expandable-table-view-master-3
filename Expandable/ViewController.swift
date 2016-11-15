@@ -197,31 +197,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if ((cellDescriptors[indexPath.section] as! NSMutableArray)[indexOfTappedRow] as AnyObject)["cellIdentifier"] as! String == "idCellValuePicker" {
                 var indexOfParentCell: Int!
                 
+                // MARK: Object-c style
 //                for var i=indexOfTappedRow - 1; i>=0; i -= 1 {
 //                    if ((cellDescriptors[indexPath.section] as! NSMutableArray)[i] as AnyObject)["isExpandable"] as! Bool == true {
 //                        indexOfParentCell = i
 //                        break
 //                    }
 //                }
-//                var i = indexOfTappedRow - 1
-//                i >= 0
-//                i -= 1
-//                do {
-//                    if  {
-//                        
-//                    }
-//                    cellDescriptors[indexPath.section]
-//                }
-                
-                var i = indexOfTappedRow - 1
-                i >= 0
-                i -= 1
-                do {
+                let i = indexOfTappedRow - 1
+                for i in (0...i).reversed() {
+//                    print(i)
                     if ((cellDescriptors[indexPath.section] as! NSMutableArray)[i] as AnyObject)["isExpandable"] as! Bool == true {
                         indexOfParentCell = i
-                        
+                        break
                     }
-//                    cellDescriptors[indexPath.section]
                 }
                 ((cellDescriptors[indexPath.section] as! NSMutableArray)[indexOfParentCell] as AnyObject).setValue((tblExpandable.cellForRow(at: indexPath) as! CustomCell).textLabel?.text, forKey: "primaryTitle")
                 ((cellDescriptors[indexPath.section] as! NSMutableArray)[indexOfParentCell] as AnyObject).setValue(false, forKey: "isExpanded")
